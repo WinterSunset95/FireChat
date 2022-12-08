@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
-import Home from './Pages/Home'
+import Global from './Pages/Global'
 
 function App() {
 
   return (
     <div className="">
-			<Home />
+			<Global />
     </div>
   )
 }

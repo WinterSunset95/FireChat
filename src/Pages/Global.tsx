@@ -11,7 +11,7 @@ import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signO
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 import { addDoc, query, collection, orderBy, getDocs } from 'firebase/firestore'
 
-const Home = () => {
+const Global = () => {
 
 	const [name, setName] = useState('')
 	const [state, setState] = useState(false)
@@ -121,4 +121,4 @@ const Home = () => {
 	)
 }
 
-export default Home
+export default Global
