@@ -18,6 +18,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+				<a href="/Global">click me</a>
       </main>
 
       <footer className={styles.footer}>
