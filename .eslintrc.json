@@ -5,7 +5,7 @@
 {
   "extends": "next/core-web-vitals",
   "rules": {
-    "react/no-unescaped-entities": "on",
-    "@next/next/no-page-custom-font": "off"
+    "react/no-unescaped-entities": "warn",
+    "@next/next/no-page-custom-font": "warn"
   }
 }
