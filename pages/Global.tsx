@@ -110,16 +110,16 @@ const Global = () => {
 					<i className={`fa-solid fa-circle-xmark`} onClick={() => setDrop(false)}></i>
 				</div>
 				<div className={`${drop ? 'h-40' : 'h-0'} absolute bottom-0 right-4 translate-y-full overflow-hidden duration-100 flex flex-col justify-around items-center z-50`}>
-					<a href="https://github.com/WinterSunset95/FireChat" target="_blank">
+					<a href="https://github.com/WinterSunset95/FireChat" target="_blank" rel="noreferrer">
 						<i className="fa-brands fa-github fa-2x m-1"></i>
 					</a>
-					<a href="https://facebook.com/autumntowinter"  target="_blank">
+					<a href="https://facebook.com/autumntowinter"  target="_blank" rel="noreferrer">
 						<i className="fa-brands fa-facebook fa-2x m-1"></i>
 					</a>
-					<a href="https://reddit.com/u/WallaceThiago95" target="_blank">
+					<a href="https://reddit.com/u/WallaceThiago95" target="_blank" rel="noreferrer">
 						<i className="fa-brands fa-reddit fa-2x m-1"></i>
 					</a>
-					<a href="https://wintersunset-portfolio.vercel.app" target="_blank">
+					<a href="https://wintersunset-portfolio.vercel.app" target="_blank" rel="noreferrer">
 						<i className="fa-solid fa-house fa-xl m-1"></i>
 					</a>
 				</div>
