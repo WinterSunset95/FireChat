@@ -6,11 +6,11 @@
 	display: grid;
 	grid-template-areas: 
 	"navbar navbar navbar navbar navbar navbar"
-	"usersList usersList messages messages messages messages"
-	"usersList usersList messages messages messages messages"
-	"usersList usersList messages messages messages messages"
-	"usersList usersList messages messages messages messages"
-	"usersList usersList footer footer footer footer";
+	"messages messages messages messages messages messages"
+	"messages messages messages messages messages messages"
+	"messages messages messages messages messages messages"
+	"messages messages messages messages messages messages"
+	"footer footer footer footer footer footer";
 }
 
 .navbar {
@@ -40,4 +40,13 @@
 	.users {
 		position: initial;
 	}
+.gridContainer {
+	grid-template-areas: 
+	"navbar navbar navbar navbar navbar navbar"
+	"usersList usersList messages messages messages messages"
+	"usersList usersList messages messages messages messages"
+	"usersList usersList messages messages messages messages"
+	"usersList usersList messages messages messages messages"
+	"usersList usersList footer footer footer footer";
+}
 }
