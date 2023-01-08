@@ -45,13 +45,7 @@ export default function App({ Component, pageProps }: AppProps) {
 				}
 			}
 		} else {
-			addDoc(collection(db, 'users'), {
-				name: auth.currentUser.displayName,
-				uid: auth.currentUser.uid,
-				email: auth.currentUser.email,
-				phone: auth.currentUser.phoneNumber,
-				picture: auth.currentUser.photoURL
-			})
+			console.log('test')
 		}
 	}
 
@@ -75,7 +69,6 @@ export default function App({ Component, pageProps }: AppProps) {
 			setName(auth.currentUser!.displayName!)
 			setUid(auth.currentUser!.uid)
 			setState(true)
-			checkUser(auth.currentUser.uid)
 		})
 	}
 
@@ -86,7 +79,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
 	useEffect(() => {
 		checkAuthState()
-	}, [name])
+	}, [name, users])
 
 	return (
 		<AppContext.Provider value={{ name, setName, state, setState, uid, setUid, signIn, logOut, users }}>
