@@ -29,23 +29,19 @@ export default function App({ Component, pageProps }: AppProps) {
 
 	const checkUser = (thisid:any) => {
 		if (users && users.length > 0) {
-			console.log('trial')
-			for (let i=0; i < users.length; i++) {
-				console.log(users[i])
-				if (thisid == users[i].uid) {
-					console.log('true')
-				} else {
-					addDoc(collection(db, 'users'), {
-						name: auth.currentUser.displayName,
-						uid: auth.currentUser.uid,
-						email: auth.currentUser.email,
-						phone: auth.currentUser.phoneNumber,
-						picture: auth.currentUser.photoURL
-					})
-				}
+			let stat = users.filter(item => item.uid == uid)
+			if (stat.length > 0) {
+				console.log('found')
+			} else {
+				console.log('not found')
+				addDoc(collection(db, 'users'), {
+					name: auth.currentUser.displayName,
+					uid: auth.currentUser.uid,
+					email: auth.currentUser.email,
+					phone: auth.currentUser.phoneNumber,
+					picture: auth.currentUser.photoURL
+				})
 			}
-		} else {
-			console.log('test')
 		}
 	}
 
