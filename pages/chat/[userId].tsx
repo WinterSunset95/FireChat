@@ -167,8 +167,7 @@ const ChatPage = () => {
 				<div className={`${vidstate ? '' : 'hidden'} ${styles.iframe}`}>
 					<YouTube
 						ref={video}
-						width={500}
-						height={500}
+						className={`w-full h-full`}
 						videoId={uri != '' ? uri :'2g811Eo7K8U' }
 						onPlay={(state) => stateChange('play', state)}
 						onPause={(state) => stateChange('pause', state)}
