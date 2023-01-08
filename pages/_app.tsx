@@ -75,7 +75,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
 	useEffect(() => {
 		checkAuthState()
-	}, [name, users])
+	}, [name])
 
 	return (
 		<AppContext.Provider value={{ name, setName, state, setState, uid, setUid, signIn, logOut, users }}>
