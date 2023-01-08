@@ -5,6 +5,7 @@
 
 
 
+import Head from 'next/head'
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { config } from '@fortawesome/fontawesome-svg-core'
@@ -54,6 +55,10 @@ export default function App({ Component, pageProps }: AppProps) {
 
 	return (
 		<AppContext.Provider value={{ name, setName, state, setState, uid, setUid, signIn, logOut }}>
+			<Head>
+				<meta name="application-name" content="FireChat" />
+				<link rel="manifest" href="/manifest.json" />
+			</Head>
 			<Component {...pageProps} />
 		</AppContext.Provider>
 	)
