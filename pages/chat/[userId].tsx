@@ -20,7 +20,7 @@ import { faPaperPlane, faXmarkCircle, faBars, faHouse, faVideo } from '@fortawes
 const ChatPage = () => {
 	const [uri, setUri] = useState('')
 	const video = useRef(null)
-	const [vidstate, setVidstate] = useState(false)
+	const [vidstate, setVidstate] = useState(true)
 
 	const router = useRouter()
 	const { userId } = router.query
@@ -69,6 +69,15 @@ const ChatPage = () => {
 		node.value = ''
 	}
 
+	const handleVidClick = () => {
+		const node = (document.getElementById('input-field') as HTMLInputElement)
+		const msg = node.value
+		let id = msg.split('youtu.be/')[1]
+		if (uri != id) {
+			setUri(id)
+		}
+	}
+
 	const send = (msg:any) => {
 		msg != '' ?
 		addDoc(collection(db, chat), {
@@ -110,7 +119,7 @@ const ChatPage = () => {
 				//console.log(state.target.getVideoUrl())
 				//console.log(state.target.getCurrentTime())
 				//console.log(video.current.internalPlayer.seekTo(0))
-			} else if (event == 'pause') {
+			} else if (event == 'play') {
 				vidUpdate(event, state.target.getCurrentTime(), state.target.getVideoUrl())
 			}
 		}
@@ -121,13 +130,17 @@ const ChatPage = () => {
 		node!.scrollTop = node!.scrollHeight
 	}, [messages])
 	useEffect(() => {
+		console.log('video updated')
 		if (videos && videos.length > 1) {
 			let data = videos[videos.length - 1]
 			let id = data.uri.split('youtu.be/')[1]
+			console.log(data)
+			console.log(video.current.internalPlayer)
 			if (uri != id) {
 				setUri(id)
 			}
 			if (data.action == 'play') {
+				video.current.internalPlayer.playVideo()
 				video.current.internalPlayer.seekTo(data.seek)
 			}
 		}
@@ -146,7 +159,7 @@ const ChatPage = () => {
 				<div className={`${vidstate ? '' : 'hidden'} ${styles.iframe}`}>
 					<YouTube
 						ref={video}
-						className={`w-full h-full`}
+						className={``}
 						videoId={uri != '' ? uri :'2g811Eo7K8U' }
 						onPlay={(state) => stateChange('play', state)}
 						onPause={(state) => stateChange('pause', state)}
@@ -154,14 +167,14 @@ const ChatPage = () => {
 				</div>
 				<div className={`flex flex-col overflow-y-scroll ${styles.messages}`} id="messages">
 					{
-					messages && messages.map(msg => <Message key={msg.timestamp} message={msg.message} username={msg.user} pos={msg.uid == uid ? 'right' : 'left'}/>)
+						messages && messages.map(msg => <Message key={msg.timestamp} message={msg.message} username={msg.user} pos={msg.uid == uid ? 'right' : 'left'}/>)
 					}
 				</div>
 				<div className={`flex justify-around items-center w-full p-2 bg-black ${styles.footer}`}>
 					{
 						state ? 
 							<>
-								<div className="cursor-pointer" onClick={() => setVidstate(!vidstate)}>
+								<div className="cursor-pointer" onClick={() => handleVidClick()}>
 									<FontAwesomeIcon icon={faVideo} className="text-white fa-xl ml-4"/>
 								</div> 
 								<input type="text" className="h-10 rounded-full grow p-2 m-4" id="input-field" onKeyDown={(event) => check(event)}/>
