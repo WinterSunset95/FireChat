@@ -69,15 +69,6 @@ const ChatPage = () => {
 		node.value = ''
 	}
 
-	const handleVidClick = () => {
-		const node = (document.getElementById('input-field') as HTMLInputElement)
-		const msg = node.value
-		let id = msg.split('youtu.be/')[1]
-		if (uri != id) {
-			setUri(id)
-		}
-	}
-
 	const send = (msg:any) => {
 		msg != '' ?
 		addDoc(collection(db, chat), {
@@ -111,6 +102,17 @@ const ChatPage = () => {
 			uri: 'https://youtu.be/' + id,
 		})
 	}
+
+	const handleVidClick = () => {
+		const node = (document.getElementById('input-field') as HTMLInputElement)
+		const msg = node.value
+		let id = msg.split('youtu.be/')[1]
+		if (uri != id) {
+			setUri(id)
+			vidUpdate('set', state.target.getCurrentTime(), 'https://youtu.be/' + id)
+		}
+	}
+
 
 	const stateChange = (event:any, state:any) => {
 		if (video.current) {
@@ -159,7 +161,8 @@ const ChatPage = () => {
 				<div className={`${vidstate ? '' : 'hidden'} ${styles.iframe}`}>
 					<YouTube
 						ref={video}
-						className={``}
+						width={500}
+						height={500}
 						videoId={uri != '' ? uri :'2g811Eo7K8U' }
 						onPlay={(state) => stateChange('play', state)}
 						onPause={(state) => stateChange('pause', state)}
