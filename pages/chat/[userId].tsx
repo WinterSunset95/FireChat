@@ -144,7 +144,7 @@ const ChatPage = () => {
 			if (id != 'undefined' && uri != id) {
 				setUri(id)
 			}
-			if (data.action == 'play') {
+			if (data.action == 'play' && data.uri != uri) {
 				video.current.internalPlayer.playVideo()
 				video.current.internalPlayer.seekTo(data.seek)
 			}
