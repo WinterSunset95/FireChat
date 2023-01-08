@@ -92,14 +92,20 @@ const ChatPage = () => {
 	}
 
 	const vidUpdate = (event:any, time:any, uri:any) => {
-		let id = uri.split("&v=")[1]
+		let id
+		if (uri.includes('youtu.be')) {
+			id = uri
+		} else {
+			id = uri.split("&v=")[1]
+			id = 'https://youtu.be/' + id
+		}
 		addDoc(collection(db, 'video' + chat), {
 			action: event,
 			user: name,
 			uid: uid,
 			seek: time,
 			timestamp: new Date(),
-			uri: 'https://youtu.be/' + id,
+			uri: id,
 		})
 	}
 
@@ -108,8 +114,9 @@ const ChatPage = () => {
 		const msg = node.value
 		let id = msg.split('youtu.be/')[1]
 		if (uri != id) {
-			setUri(id)
-			vidUpdate('set', state.target.getCurrentTime(), 'https://youtu.be/' + id)
+			console.log(msg)
+			console.log(id)
+			vidUpdate('set', 0, msg)
 		}
 	}
 
@@ -118,9 +125,6 @@ const ChatPage = () => {
 		if (video.current) {
 			if (event == 'pause') {
 				vidUpdate(event, state.target.getCurrentTime(), state.target.getVideoUrl())
-				//console.log(state.target.getVideoUrl())
-				//console.log(state.target.getCurrentTime())
-				//console.log(video.current.internalPlayer.seekTo(0))
 			} else if (event == 'play') {
 				vidUpdate(event, state.target.getCurrentTime(), state.target.getVideoUrl())
 			}
@@ -132,13 +136,12 @@ const ChatPage = () => {
 		node!.scrollTop = node!.scrollHeight
 	}, [messages])
 	useEffect(() => {
-		console.log('video updated')
 		if (videos && videos.length > 1) {
 			let data = videos[videos.length - 1]
 			let id = data.uri.split('youtu.be/')[1]
+			console.log(id)
 			console.log(data)
-			console.log(video.current.internalPlayer)
-			if (uri != id) {
+			if (id != 'undefined' && uri != id) {
 				setUri(id)
 			}
 			if (data.action == 'play') {
