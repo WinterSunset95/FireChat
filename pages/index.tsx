@@ -104,7 +104,7 @@ export default function Home() {
 								</div> 
 							</>
 							:
-							<div className="p-4 rounded-full bg-blue-400 text-white" onClick={() => signIn()}>Login to send messages</div>
+							<div className="p-4 rounded-full bg-blue-400 text-white cursor-pointer" onClick={() => signIn()}>Login to send messages</div>
 					}
 				</div>
 			</div>

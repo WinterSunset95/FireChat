@@ -29,6 +29,11 @@
 	grid-area: footer;
 }
 
+.iframe {
+	position: fixed;
+	top: 0;
+}
+
 .users {
 	position: fixed;
 	right: 0;
@@ -36,9 +41,18 @@
 	transition: all 0.3s ease-in-out;
 }
 
+@media screen and (max-width: 768px) {
+	.iframe {
+		left: 0;
+	}
+}
+
 @media screen and (min-width: 768px) {
 	.users {
 		position: initial;
+	}
+	.iframe {
+		right: 0;
 	}
 .gridContainer {
 	grid-template-areas: 
