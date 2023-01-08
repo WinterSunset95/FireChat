@@ -20,7 +20,7 @@ import { faPaperPlane, faXmarkCircle, faBars, faHouse, faVideo } from '@fortawes
 const ChatPage = () => {
 	const [uri, setUri] = useState('')
 	const video = useRef(null)
-	const [vidstate, setVidstate] = useState(true)
+	const [vidstate, setVidstate] = useState(false)
 
 	const router = useRouter()
 	const { userId } = router.query
@@ -112,11 +112,15 @@ const ChatPage = () => {
 	const handleVidClick = () => {
 		const node = (document.getElementById('input-field') as HTMLInputElement)
 		const msg = node.value
-		let id = msg.split('youtu.be/')[1]
-		if (uri != id) {
-			console.log(msg)
-			console.log(id)
-			vidUpdate('set', 0, msg)
+		if (msg.includes('youtu.be/')) {
+			let id = msg.split('youtu.be/')[1]
+			if (uri != id) {
+				console.log(msg)
+					console.log(id)
+				vidUpdate('set', 0, msg)
+			}
+		} else {
+			setVidstate(!vidstate)
 		}
 	}
 
@@ -145,7 +149,6 @@ const ChatPage = () => {
 				setUri(id)
 			}
 			if (data.action == 'play' && data.uid != uid) {
-				video.current.internalPlayer.playVideo()
 				video.current.internalPlayer.seekTo(data.seek)
 			}
 		}
